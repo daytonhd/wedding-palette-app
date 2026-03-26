@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Results - Wedding Palette Tool</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 24px;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        .admin-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #f0f0f0;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #fff8db;
+            border: 1px solid #ead98f;
+            display: none;
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .summary-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            margin: 0 0 12px 0;
+            font-size: 20px;
+        }
+
+        .palette-counts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .palette-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fafafa;
+        }
+
+        .palette-name {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .palette-value {
+            font-size: 22px;
+        }
+
+        .respondents-list {
+            display: grid;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .respondent-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .respondent-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .respondent-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .respondent-meta {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .winner-pill {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #eef4ff;
+            border: 1px solid #cddcff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .choices-table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        th {
+            color: #555;
+            font-weight: 700;
+            background: #fafafa;
+        }
+
+        .muted {
+            color: #777;
+        }
+
+        .empty-state {
+            padding: 24px;
+            border: 1px dashed #ccc;
+            border-radius: 12px;
+            background: white;
+            text-align: center;
+            color: #666;
+        }
+
+        .small {
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-shell">
+        <div class="admin-header">
+            <div>
+                <h1>Admin Results</h1>
+                <div class="small">Wedding palette elimination results</div>
+            </div>
+
+            <div class="admin-actions">
+                <button id="refreshBtn">Refresh</button>
+                <button id="clearBtn">Clear Results</button>
+            </div>
+        </div>
+
+        <div id="messageBox" class="message"></div>
+
+        <div id="summarySection" class="grid summary-grid"></div>
+
+        <div class="card" style="margin-bottom: 24px;">
+            <h2 class="section-title">Final Winner Totals</h2>
+            <div id="paletteCounts" class="palette-counts"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Respondents</h2>
+            <div id="respondentsContainer" class="respondents-list"></div>
+        </div>
+    </div>
+
+    <script src="/admin.js"></script>
+</body>
+
+</html>

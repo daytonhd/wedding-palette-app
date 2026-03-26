@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Palette Vote</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <main class="site-shell">
+        <section class="participant-app">
+            <header class="participant-header">
+                <div class="title-row" aria-label="App title">
+                    <img class="title-siren-image" src="/siren.jpeg" alt="" aria-hidden="true" />
+                    <h1 class="main-title">Help Me Pick Colors Please</h1>
+                    <img class="title-siren-image" src="/siren.jpeg" alt="" aria-hidden="true" />
+                </div>
+            </header>
+
+            <section id="startScreen" class="screen start-screen">
+                <div class="start-row">
+                    <label for="nameInput" class="name-label">Name:</label>
+                    <input id="nameInput" type="text" placeholder="" autocomplete="name" />
+                    <button id="startButton" type="button">Start</button>
+                </div>
+            </section>
+
+            <section id="matchupScreen" class="screen matchup-screen hidden">
+                <p id="matchupTitle" class="question-text hidden"></p>
+
+                <div class="round-row">
+                    <span id="roundDisplay" class="round-text">Round 1</span>
+                </div>
+
+                <p class="respondent-meta hidden-accessible">
+                    Respondent: <span id="respondentNameDisplay"></span>
+                </p>
+
+                <div class="matchup-grid">
+                    <button id="leftChoiceButton" class="palette-choice" type="button" aria-label="Choose left palette">
+                        <div class="palette-frame">
+                            <img id="leftPaletteImage" class="palette-image" alt="Left palette" />
+                        </div>
+                        <span id="leftPaletteLabel" class="palette-label"></span>
+                    </button>
+
+                    <button id="rightChoiceButton" class="palette-choice" type="button"
+                        aria-label="Choose right palette">
+                        <div class="palette-frame">
+                            <img id="rightPaletteImage" class="palette-image" alt="Right palette" />
+                        </div>
+                        <span id="rightPaletteLabel" class="palette-label"></span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="resultScreen" class="screen result-screen hidden">
+                <p class="question-text final-title">Final Winner</p>
+
+                <div class="winner-card">
+                    <div class="palette-frame winner-frame">
+                        <img id="winnerImage" class="winner-image" alt="Winning palette" />
+                    </div>
+                    <p id="winnerLabel" class="winner-label"></p>
+                </div>
+
+                <button id="restartButton" type="button">Start over</button>
+            </section>
+
+            <section class="status-panel" aria-hidden="true">
+                <h2>Status</h2>
+                <pre id="statusOutput"></pre>
+            </section>
+        </section>
+    </main>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
