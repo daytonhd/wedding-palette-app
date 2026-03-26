@@ -59,6 +59,14 @@ body {
     transform: translateY(1px);
 }
 
+.title-siren-image {
+    height: clamp(26px, 3.2vw, 48px);
+    width: auto;
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
 .main-title {
     margin: 0;
     font-size: clamp(26px, 3.2vw, 48px);
@@ -280,28 +288,174 @@ pre {
     margin: 0;
 }
 
-/* Keep admin styling intact below */
+.admin-app {
+    width: 100%;
+    max-width: 920px;
+}
 
-.admin-toolbar {
+.admin-header-elegant {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.admin-subtitle {
+    margin: -4px 0 0;
+    font-size: 16px;
+    color: #5f5a54;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.admin-actions-elegant {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.admin-actions-elegant button,
+#refreshBtn,
+#clearBtn {
+    box-sizing: border-box;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid #bebbb5;
+    border-radius: 0;
+    background: transparent;
+    color: #1b1b1b;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: "Times New Roman", Times, serif;
+    cursor: pointer;
+    white-space: nowrap;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.admin-actions-elegant button:hover,
+.admin-actions-elegant button:focus-visible,
+#refreshBtn:hover,
+#clearBtn:hover,
+#refreshBtn:focus-visible,
+#clearBtn:focus-visible {
+    border-color: #6d6861;
+    background: #fcfcfb;
+    outline: none;
+}
+
+.message {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 22px;
+    padding: 14px 16px;
+    border: 1px solid #d8d0c7;
+    border-radius: 0;
+    background: #fbf8f4;
+    color: #4e463f;
+    font-family: "Times New Roman", Times, serif;
+    display: none;
+}
+
+.admin-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.admin-section {
+    margin-bottom: 24px;
+    padding: 18px;
+    border: 1px solid #bebbb5;
+    background: #ffffff;
+}
+
+.section-title {
+    margin: 0 0 14px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.1;
+    font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", "Brush Script MT", cursive;
+    letter-spacing: 0.01em;
+}
+
+.admin-stat-card {
+    border: 1px solid #bebbb5;
+    background: #ffffff;
+    padding: 18px 16px;
+    min-height: 118px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admin-stat-label {
+    font-size: 15px;
+    color: #5f5a54;
+    margin-bottom: 10px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.admin-stat-value {
+    font-size: 34px;
+    line-height: 1;
+    font-weight: 400;
+    font-family: "Times New Roman", Times, serif;
+    color: #1b1b1b;
+}
+
+.admin-palette-counts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.admin-palette-box {
+    border: 1px solid #bebbb5;
+    background: #ffffff;
+    padding: 14px;
+    text-align: center;
+}
+
+.admin-palette-name {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #5f5a54;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.admin-palette-value {
+    font-size: 28px;
+    font-weight: 400;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.admin-respondents-list {
+    display: grid;
+    gap: 18px;
 }
 
 .admin-respondent-card {
-    border: 1px solid #dddddd;
-    border-radius: 14px;
+    border: 1px solid #bebbb5;
     padding: 18px;
-    margin-bottom: 18px;
-    background: #fcfcfc;
+    background: #ffffff;
 }
 
 .admin-respondent-header {
     margin-bottom: 16px;
+    text-align: center;
 }
 
 .admin-respondent-header h3 {
     margin: 0 0 10px;
-    font-size: 26px;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .admin-meta-grid {
@@ -311,24 +465,58 @@ pre {
 
 .admin-meta-grid p {
     margin: 0;
+    font-size: 15px;
+    color: #5f5a54;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .admin-table th,
 .admin-table td {
     text-align: left;
-    padding: 10px 12px;
-    border-bottom: 1px solid #dddddd;
+    padding: 12px 10px;
+    border-bottom: 1px solid #e4ddd5;
     vertical-align: top;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .admin-table th {
-    background: #f4f4f4;
+    background: #fbf8f4;
+    color: #5f5a54;
+}
+
+.empty-state {
+    padding: 24px;
+    border: 1px solid #d8d0c7;
+    background: #fbf8f4;
+    text-align: center;
+    color: #5f5a54;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.winner-pill {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #bebbb5;
+    border-radius: 999px;
+    background: #fbf8f4;
+    font-weight: 400;
+    font-size: 15px;
+    font-family: "Times New Roman", Times, serif;
+    color: #1b1b1b;
+}
+
+.small,
+.muted {
+    color: #5f5a54;
+    font-family: "Times New Roman", Times, serif;
 }
 
 @media (max-width: 900px) {
@@ -338,14 +526,6 @@ pre {
 
     .title-row {
         gap: 14px;
-    }
-
-    .title-siren-image {
-        height: clamp(26px, 3.2vw, 48px);
-        width: auto;
-        display: block;
-        flex: 0 0 auto;
-        object-fit: contain;
     }
 
     .start-row {
@@ -361,6 +541,14 @@ pre {
     .matchup-grid {
         grid-template-columns: minmax(240px, 340px);
         gap: 26px;
+    }
+
+    .admin-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-section {
+        padding: 16px;
     }
 }
 

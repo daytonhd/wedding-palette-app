@@ -98,8 +98,9 @@ function normalizeAdminResults(rawData) {
     respondents,
     paletteCounts,
     totalRespondents: respondents.length,
-    completedRespondents: respondents.filter((r) => r.finalWinner !== null)
-      .length,
+    completedRespondents: respondents.filter(
+      (respondent) => respondent.finalWinner !== null,
+    ).length,
   };
 }
 
@@ -191,19 +192,19 @@ function buildPaletteCounts(respondents) {
 
 function renderSummary(data) {
   summarySection.innerHTML = `
-    <div class="card">
-      <div class="stat-label">Total Respondents</div>
-      <div class="stat-value">${data.totalRespondents}</div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Total Respondents</div>
+      <div class="admin-stat-value">${data.totalRespondents}</div>
     </div>
 
-    <div class="card">
-      <div class="stat-label">Completed Brackets</div>
-      <div class="stat-value">${data.completedRespondents}</div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Completed Brackets</div>
+      <div class="admin-stat-value">${data.completedRespondents}</div>
     </div>
 
-    <div class="card">
-      <div class="stat-label">Most Chosen Final Winner</div>
-      <div class="stat-value">${getTopPaletteLabel(data.paletteCounts)}</div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Most Chosen Final Winner</div>
+      <div class="admin-stat-value">${escapeHtml(getTopPaletteLabel(data.paletteCounts))}</div>
     </div>
   `;
 }
@@ -223,9 +224,9 @@ function renderPaletteCounts(counts) {
   paletteCounts.innerHTML = entries
     .map(([palette, count]) => {
       return `
-        <div class="palette-box">
-          <div class="palette-name">${escapeHtml(palette)}</div>
-          <div class="palette-value">${count}</div>
+        <div class="admin-palette-box">
+          <div class="admin-palette-name">${escapeHtml(palette)}</div>
+          <div class="admin-palette-value">${count}</div>
         </div>
       `;
     })
@@ -245,19 +246,18 @@ function renderRespondents(respondents) {
   respondentsContainer.innerHTML = respondents
     .map((respondent) => {
       return `
-        <div class="respondent-card">
-          <div class="respondent-top">
-            <div>
-              <h3 class="respondent-name">${escapeHtml(respondent.name)}</h3>
-              <div class="respondent-meta">
-                ID: ${escapeHtml(String(respondent.id))}
-                ${respondent.createdAt ? ` • Submitted: ${escapeHtml(formatDate(respondent.createdAt))}` : ""}
-                ${respondent.status ? ` • Status: ${escapeHtml(respondent.status)}` : ""}
-              </div>
-            </div>
-
-            <div class="winner-pill">
-              Final Winner: ${respondent.finalWinner ? escapeHtml(normalizePaletteDisplayValue(respondent.finalWinner)) : "Not finished"}
+        <div class="admin-respondent-card">
+          <div class="admin-respondent-header">
+            <h3>${escapeHtml(respondent.name)}</h3>
+            <div class="admin-meta-grid">
+              <p>ID: ${escapeHtml(String(respondent.id))}</p>
+              ${respondent.createdAt ? `<p>Submitted: ${escapeHtml(formatDate(respondent.createdAt))}</p>` : ""}
+              ${respondent.status ? `<p>Status: ${escapeHtml(respondent.status)}</p>` : ""}
+              <p>
+                <span class="winner-pill">
+                  Final Winner: ${respondent.finalWinner ? escapeHtml(normalizePaletteDisplayValue(respondent.finalWinner)) : "Not finished"}
+                </span>
+              </p>
             </div>
           </div>
 
@@ -288,22 +288,20 @@ function renderChoicesTable(choices) {
     .join("");
 
   return `
-    <div class="choices-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Matchup</th>
-            <th>Option A</th>
-            <th>Option B</th>
-            <th>Selected</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows}
-        </tbody>
-      </table>
-    </div>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Matchup</th>
+          <th>Option A</th>
+          <th>Option B</th>
+          <th>Selected</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
   `;
 }
 
@@ -382,9 +380,18 @@ async function clearResults() {
 
 function showLoadingState() {
   summarySection.innerHTML = `
-    <div class="card"><div class="stat-label">Loading</div><div class="stat-value">...</div></div>
-    <div class="card"><div class="stat-label">Loading</div><div class="stat-value">...</div></div>
-    <div class="card"><div class="stat-label">Loading</div><div class="stat-value">...</div></div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Loading</div>
+      <div class="admin-stat-value">...</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Loading</div>
+      <div class="admin-stat-value">...</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">Loading</div>
+      <div class="admin-stat-value">...</div>
+    </div>
   `;
 
   paletteCounts.innerHTML = `<div class="muted">Loading winner totals...</div>`;
