@@ -78,7 +78,6 @@ function normalizeAdminResults(rawData) {
       null;
 
     const createdAt = item.created_at || item.createdAt || null;
-
     const rawChoices = responsesByRespondentId[respondentId] || [];
     const choices = normalizeChoices(rawChoices);
 
@@ -93,14 +92,15 @@ function normalizeAdminResults(rawData) {
   });
 
   const paletteCounts = buildPaletteCounts(respondents);
+  const completedRespondents = respondents.filter(
+    (respondent) => respondent.finalWinner !== null,
+  ).length;
 
   return {
     respondents,
     paletteCounts,
     totalRespondents: respondents.length,
-    completedRespondents: respondents.filter(
-      (respondent) => respondent.finalWinner !== null,
-    ).length,
+    completedRespondents,
   };
 }
 
@@ -214,7 +214,7 @@ function renderPaletteCounts(counts) {
 
   if (!entries.length) {
     paletteCounts.innerHTML = `
-      <div class="empty-state" style="width: 100%;">
+      <div class="empty-state">
         No final winner data yet.
       </div>
     `;
